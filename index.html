@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullpage.js/dist/fullpage.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #3c727a;
+    }
+
+    #container1,
+    #container2 {
+        border-radius: 2%;
+        max-width: 70%;
+        margin: 50px auto;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        background-color: #4a90a4;
+    }
+
+    header img {
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        margin-bottom: 20px;
+    }
+
+    h1 {
+        color: #f7f7f7;
+        font-family: "Poppins", sans-serif;
+    }
+
+    button {
+        color: #f7f7f7;
+        background-color: #4a90a400;
+        border: none;
+    }
+
+    #job-title,
+    #age {
+        color: #d5e5e6;
+    }
+
+    #description {
+        margin: 20px 0;
+        color: #f7f7f7;
+    }
+
+    #counter {
+        margin-top: 20px;
+        font-size: 24px;
+        color: #ffcc00;
+    }
+
+    #number-counter {
+        font-weight: bold;
+    }
+
+    .social-icons {
+        margin-top: 20px;
+    }
+
+    .social-icons a {
+        margin: 0 10px;
+        color: #f7f7f7;
+        font-size: 20px;
+        text-decoration: none;
+    }
+
+</style>
+
+<body>
+    <div id="fullpage">
+
+        <div class="section">
+            <div class="container" id="container1">
+                <header>
+                    <img id="profile-img" src="img/photo_6222026711655102759_m.jpg" alt="Your Name">
+                    <h1 id="name">Wayne</h1>
+                    <p id="job-title">Student in Republic Polytechnic</p>
+                    <p id="age">Age: <span id="number-counter">0</span></p>
+                </header>
+                <section id="description">
+                    <p>
+                        Hello! I am currently taking Digital Design & Development, and my love for travelling and food is ridiculous.
+                        I do not like sweet stuff though.
+                    </p>
+                </section>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="container" id="container2">
+                <h1>Contact Me</h1>
+                <div class="social-icons">
+                    <a href="#" class="fa fa-linkedin"></a>
+                    <a href="#" class="fa fa-twitter"></a>
+                    <a href="#" class="fa fa-instagram"></a>
+                </div>
+                <section id="content">
+                    <p>Email: 22000210@myrp.edu.sg</p>
+                    <p>Phone: +65 88053385</p>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            anime({
+                targets: 'header *',
+                opacity: [0, 1],
+                translateY: [50, 0],
+                delay: anime.stagger(100),
+                easing: 'easeInOutQuad'
+            });
+
+            anime({
+                targets: '#description p',
+                opacity: [0, 1],
+                translateY: [50, 0],
+                easing: 'easeInOutQuad',
+                delay: 300
+            });
+
+            anime({
+                targets: '#number-counter',
+                textContent: [0, 19],
+                round: 1,
+                easing: 'easeInOutQuad',
+                duration: 1500,
+                complete: function (anim) {
+                    document.getElementById('age').innerText = 'Age: ' + anim.animations[0].currentValue;
+                }
+            });
+
+            document.getElementById('profile-img').addEventListener('click', function () {
+                anime({
+                    targets: 'img',
+                    translateX: [-20, 20],
+                    duration: 1000,
+                    loop: 2,
+                    direction: 'alternate',
+                    easing: 'easeInOutQuad'
+                });
+            });
+
+            anime({
+                targets: 'h1',
+                opacity: [0, 1],
+                translateY: [50, 0],
+                delay: anime.stagger(100),
+                easing: 'easeInOutQuad'
+            });
+
+            anime({
+                targets: '#content p',
+                opacity: [0, 1],
+                translateY: [50, 0],
+                easing: 'easeInOutQuad',
+                delay: 300
+            });
+
+            anime({
+                targets: '.social-icons a',
+                opacity: [0, 1],
+                translateY: [50, 0],
+                delay: anime.stagger(100),
+                easing: 'easeInOutQuad'
+            });
+        });
+
+        $(document).ready(function () {
+            $('#fullpage').fullpage({
+                sectionsColor: ['#3c727a', '#4a90a4'],
+                anchors: ['about-me', 'contact'],
+                menu: '#menu',
+                navigation: true,
+                navigationPosition: 'right',
+                verticalCentered: true
+            });
+        });
+    </script>
+
+    
+</body>
+
+</html>
